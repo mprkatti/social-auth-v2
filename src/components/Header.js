@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { signIn, signOut } from '../actions';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
+  state = { activeItem: 'home' };
   getLabel = () => {
     if (this.props.isAuthenticated) {
       return 'Sign Out';
@@ -79,13 +81,13 @@ class Header extends React.Component {
           </div>
           <div className="ui large  pointing menu transition ">
             <div className="ui container">
-              <a className="active blue item">Home </a>
-              <a className="blue item">About</a>
-              <a className="blue item">Company</a>
-              <a className="blue item">Careers</a>
+              <Link className="active blue item" to="/" name="home"   >Home </Link>
+              <Link className="blue item" to="/about">About</Link>
+              <Link className="blue item" to="/company">Company</Link>
+              <Link className="blue item" to="/careers">Careers</Link>
+              <Link className="blue item" to="/feedback">Feedback</Link>
             </div>
             {this.props.isAuthenticated ? this.renderLogoutButton() : this.renderLoginButton()}
-
           </div>
         </div >
       </div >
