@@ -2,6 +2,7 @@
 1. This react app integrates with GAPI for enabling secure access to the react app. Also uses redux for state management of application state.
 2. The app also integrates with Google recaptcha v3 that alleviates usage of the app by bots.
 3. The above feature needs a node js server side component.
+4. This app demonstrated the use of multi factor auth using google authenticator. This includes device registration, display of qr code on the react app and verification of token post device registration.
 ### `npm start`
 
 Runs the app in the development mode.\
