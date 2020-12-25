@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Feedback.css';
 import axios from 'axios';
-import { SERVER_URL, SITE_KEY } from '../util/config';
+import { SERVER_URL } from '../util/config';
 
 export const Feedback = ({ history }) => {
 
