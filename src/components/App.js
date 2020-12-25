@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import About from './About';
 import Company from './Company';
-import Careers from './Careers';
+import Settings from './Settings';
 import Feedback from './Feedback';
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
             <Route path="/" exact component={Content} />
             <Route path="/about" exact component={About} />
             <Route path="/company" exact component={Company} />
-            <Route path="/careers" exact component={Careers} />
+            <Route path="/mfa" exact component={Settings} />
             <Route path="/feedback" exact component={Feedback} />
           </div >
         </Router>

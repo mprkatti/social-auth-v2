@@ -84,12 +84,10 @@ class Header extends React.Component {
               <Link className="active blue item" to="/" name="home"   >Home </Link>
               <Link className="blue item" to="/about">About</Link>
               <Link className="blue item" to="/company">Company</Link>
-              <Link className="blue item" to="/careers">Careers</Link>
               <Link className="blue item" to="/feedback">Feedback</Link>
+              <Link className="blue item" to="/mfa"> MFA Settings </Link>
 
             </div>
-
-
             {this.props.isAuthenticated ? this.renderLogoutButton() : this.renderLoginButton()}
           </div>
         </div >
