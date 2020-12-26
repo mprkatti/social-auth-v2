@@ -48,6 +48,10 @@ export const SubmitToken = () => {
       return '';
     }
 
+    setTimeout(() => {
+      setStatus('');
+    }, 8000)
+
     if (status) {
       return (
         <div className={`ui  visible success message`}>
@@ -71,7 +75,6 @@ export const SubmitToken = () => {
 
   }
 
-
   return (
     <div>
       {renderLoader()}
@@ -87,6 +90,7 @@ export const SubmitToken = () => {
 
       </div>
       {renderMessage()}
+
     </div>
   );
 }
