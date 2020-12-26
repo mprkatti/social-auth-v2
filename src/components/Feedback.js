@@ -33,7 +33,7 @@ export const Feedback = ({ history }) => {
   }
 
   const onSubmit = (e) => {
-    console.log('submitted...', values);
+
     e.preventDefault();
     const validPayload = validate();
     console.log(validPayload);
@@ -52,18 +52,13 @@ export const Feedback = ({ history }) => {
     const data = { ...values };
     data.token = token;
     setLoading(true);
-    console.log('submitting...', data);
+    // console.log('submitting...', data);
 
     const response = await axios.post(`${SERVER_URL}/feedback`, {
       data
     });
     setLoading(false);
-    if (response.data === 'success') {
-
-      console.log('redirecting ....')
-    }
-
-    console.log(response);
+    console.log('response: ', response);
     history.push("/");
 
   }
