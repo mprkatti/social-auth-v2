@@ -8,14 +8,9 @@ export const Feedback = ({ history }) => {
   const INITIAL_STATE = {
     name: '',
     profession: '',
-    rating: '',
-    token: ''
-  };
-  const [values, setValues] = useState({
-    name: '',
-    profession: '',
     rating: ''
-  });
+  };
+  const [values, setValues] = useState(INITIAL_STATE);
   const [disabled, setDisabled] = useState('disabled');
 
   const validate = () => {

@@ -5,7 +5,7 @@ import { SERVER_URL } from '../../util/config';
 export const SubmitToken = () => {
 
   const [token, setToken] = useState('');
-  const [name, setName] = useState('HelloWorld');
+  const [name, setName] = useState('CloudNativeApp');
   const [status, setStatus] = useState('');
 
   const onTokenSubmit = (e) => {
