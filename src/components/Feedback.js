@@ -12,20 +12,17 @@ export const Feedback = ({ history }) => {
   };
   const [values, setValues] = useState(INITIAL_STATE);
   const [disabled, setDisabled] = useState('disabled');
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     if (values.name === '' || values.profession === '' || values.rating === '') {
-      console.log('ret:false');
-
       return false;
     }
-    console.log('ret:true');
     return true;
   }
 
   const onChange = (e) => {
 
-    console.log('Inside onChange ..', e.target.name);
     setValues({ ...values, [e.target.name]: e.target.value });
     if (validate()) {
       setDisabled('');
@@ -54,12 +51,13 @@ export const Feedback = ({ history }) => {
   const finalSubmit = async (token) => {
     const data = { ...values };
     data.token = token;
-    console.log('submitted...', data);
+    setLoading(true);
+    console.log('submitting...', data);
 
     const response = await axios.post(`${SERVER_URL}/feedback`, {
       data
     });
-
+    setLoading(false);
     if (response.data === 'success') {
 
       console.log('redirecting ....')
@@ -70,8 +68,24 @@ export const Feedback = ({ history }) => {
 
   }
 
+  const renderLoader = () => {
+    if (loading) {
+      return (<div className="ui segment" style={{ align: "center", height: '300px' }}>
+        <div className="ui active dimmer">
+          <div className="ui huge text loader">Working ...</div>
+        </div>
+
+        <p></p>
+      </div>);
+    }
+    else { return ''; }
+
+  }
+
   return (
     <div className=" feedback ">
+      {renderLoader()}
+
       <div className="ui form" noValidate>
         <div className="field">
           <label htmlFor="name">Name</label>
@@ -95,8 +109,6 @@ export const Feedback = ({ history }) => {
             <option value="poor">Poor</option>
           </select>
         </div>
-        {console.log(disabled)}
-
         <button className={`g-recaptcha ui large primary button`}
           onClick={onSubmit}
         >Submit</button>

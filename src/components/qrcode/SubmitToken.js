@@ -7,10 +7,12 @@ export const SubmitToken = () => {
   const [token, setToken] = useState('');
   const [name, setName] = useState('CloudNativeApp');
   const [status, setStatus] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onTokenSubmit = (e) => {
 
     e.preventDefault();
+    setLoading(true);
     // console.log('on way to token submit', name, token);
     axios.post(`${SERVER_URL}/verify`, {
       name, token
@@ -18,9 +20,25 @@ export const SubmitToken = () => {
       console.log(response.data.verified);
       const status = response.data.verified;
       setStatus(status);
-      // status ? setVisible('visible') : setVisible('');
+      setLoading(false);
       setToken('');
+    }).catch(err => {
+      console.log(err);
+      setLoading(false);
     });
+
+  }
+
+  const renderLoader = () => {
+    if (loading) {
+      return (<div className="ui segment" style={{ align: 'center', height: '100px', width: '300px', marginLeft: '40px' }}>
+        <div className="ui active dimmer">
+          <div className="ui huge text entered inline loader">Loading ...</div>
+        </div>
+
+      </div>);
+    }
+    else { return ''; }
 
   }
 
@@ -56,6 +74,7 @@ export const SubmitToken = () => {
 
   return (
     <div>
+      {renderLoader()}
       <div className="ui inverted segment" style={{ marginTop: '100px' }}>
         <div className="ui inverted form">
           <div className="one field">
@@ -63,7 +82,7 @@ export const SubmitToken = () => {
               <input autoFocus="autoFocus" placeholder="Enter token ..." type="text" value={token} onChange={(e) => { setToken(e.target.value) }} />
             </div>
           </div>
-          <div className="ui submit primary button" onClick={onTokenSubmit}>Submit</div>
+          <div className="ui submit primary button" onClick={onTokenSubmit} type="button">Submit</div>
         </div>
 
       </div>
