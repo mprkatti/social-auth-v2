@@ -82,7 +82,7 @@ export const SubmitToken = () => {
               <input autoFocus="autoFocus" placeholder="Enter token ..." type="text" value={token} onChange={(e) => { setToken(e.target.value) }} />
             </div>
           </div>
-          <div className="ui submit primary button" onClick={onTokenSubmit} type="button">Submit</div>
+          <div className="ui submit primary button" style={{ marginLeft: '130px' }} onClick={onTokenSubmit} type="button"><i>VERIFY</i></div>
         </div>
 
       </div>
