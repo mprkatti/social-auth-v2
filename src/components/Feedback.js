@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Feedback.css';
 import axios from 'axios';
-import { SERVER_URL } from '../util/config';
+import { SERVER_URL, SITE_KEY } from '../util/config';
 
 export const Feedback = ({ history }) => {
 
@@ -47,7 +47,7 @@ export const Feedback = ({ history }) => {
     console.log(validPayload);
 
     window.grecaptcha.ready(() => {
-      window.grecaptcha.execute('6LdyxBEaAAAAAHLnPjY1U_DVC_X7t5qzwdj17Lbx', { action: 'submitFeedback' }).then(token => {
+      window.grecaptcha.execute(SITE_KEY, { action: 'submitFeedback' }).then(token => {
         setValues({ ...values, [e.target.name]: e.target.value });
         finalSubmit(token);
       });

@@ -6,12 +6,12 @@ export const SubmitToken = () => {
 
   const [token, setToken] = useState('');
   const [name, setName] = useState('HelloWorld');
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState('');
 
   const onTokenSubmit = (e) => {
 
     e.preventDefault();
-    console.log('on way to token submit', name, token);
+    // console.log('on way to token submit', name, token);
     axios.post(`${SERVER_URL}/verify`, {
       name, token
     }).then(response => {
@@ -23,6 +23,36 @@ export const SubmitToken = () => {
     });
 
   }
+
+  const renderMessage = () => {
+
+    if (status === '') {
+      return '';
+    }
+
+    if (status) {
+      return (
+        <div className={`ui  visible success message`}>
+          <i className="close icon" onClick={() => setStatus('')} />
+          <div className="header">Registration Successful</div>
+          <p>You're all signed up for the MFA.</p>
+        </div>
+      );
+    }
+
+    if (!status) {
+      return (
+        <div className={`ui  visible error message`}>
+          <i className="close icon" onClick={() => setStatus('')} />
+          <div className="header">Invalid MFA Token</div>
+          <p>Please submit a valid MFA token.</p>
+        </div>
+      )
+
+    }
+
+  }
+
 
   return (
     <div>
@@ -37,13 +67,7 @@ export const SubmitToken = () => {
         </div>
 
       </div>
-      {status ? (
-        <div className={`ui  visible success message`}>
-          <i className="close icon" onClick={() => setStatus(false)} />
-          <div className="header">Registration Successful</div>
-          <p>You're all signed up for the MFA.</p>
-        </div>
-      ) : ''}
+      {renderMessage()}
     </div>
   );
 }
