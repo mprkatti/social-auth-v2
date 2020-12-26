@@ -52,7 +52,6 @@ export const Feedback = ({ history }) => {
     const data = { ...values };
     data.token = token;
     setLoading(true);
-    // console.log('submitting...', data);
 
     const response = await axios.post(`${SERVER_URL}/feedback`, {
       data
@@ -78,7 +77,7 @@ export const Feedback = ({ history }) => {
   }
 
   return (
-    <div className=" feedback ">
+    <div className="feedback">
       {renderLoader()}
 
       <div className="ui form" noValidate>
